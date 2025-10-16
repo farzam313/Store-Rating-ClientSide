@@ -21,9 +21,6 @@ function App() {
       <p className="border-4 border-green-500 bg-yellow-200 text-center font-mono my-12 mx-20 p-4 text-2xl">
         Hello React with TailwindCSS...!
       </p>
-      <p className="border-4 border-green-500 bg-yellow-200 text-center font-mono my-12 mx-20 p-4 text-2xl">
-        Hello React with TailwindCSS...!
-      </p>
     </div>
   );
 }
