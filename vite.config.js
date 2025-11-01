@@ -11,4 +11,13 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+
+  // for vite to ignore HMR overlay on errors
+  server: {
+    hmr: {
+      overlay: false,
+    },
+  },
 });
+
+import quality from "react";
