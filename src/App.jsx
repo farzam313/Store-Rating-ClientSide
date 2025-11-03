@@ -4,7 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/auth/Home";
 import { Toaster } from "react-hot-toast";
 import SignUp from "./pages/auth/SignUp";
-
+import UserDashboard from "./pages/user/userDashboard";
 import ProtectedRoute from "./routes/protectedRoutes";
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
         {/* Protected Route */}
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/user-dashboard" element={<UserDashboard />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
