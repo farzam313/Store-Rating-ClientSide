@@ -6,6 +6,8 @@ import { Toaster } from "react-hot-toast";
 import SignUp from "./pages/auth/SignUp";
 import UserDashboard from "./pages/user/userDashboard";
 import ProtectedRoute from "./routes/protectedRoutes";
+import AdminDashboard from "./pages/auth/adminDashboard";
+import Footer from "./layout/Footer";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
         <Route element={<ProtectedRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/user-dashboard" element={<UserDashboard />} />
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -24,6 +27,8 @@ function App() {
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
+
+      <Footer />
     </BrowserRouter>
   );
 }

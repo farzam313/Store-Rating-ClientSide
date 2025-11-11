@@ -1,4 +1,3 @@
-// src/components/Input.jsx
 function Input({
   type = "text",
   placeholder = "",

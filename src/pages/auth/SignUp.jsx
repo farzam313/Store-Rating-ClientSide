@@ -102,7 +102,7 @@ const SignUp = () => {
         onClick={handleSignUp}
         disabled={isLoading}
       >
-        {isLoading ? "Logging in..." : "Login"}
+        {isLoading ? "Submiting..." : "Submit"}
       </Button>
     </div>
   );

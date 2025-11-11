@@ -5,9 +5,6 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  // Initialize auth state synchronously from localStorage so a page refresh
-  // doesn't briefly render as unauthenticated (which would cause an unwanted
-  // redirect to /login before the stored token is read).
   const [token, setToken] = useState(() => localStorage.getItem("token"));
   const [isLoggedIn, setIsLoggedIn] = useState(
     () => !!localStorage.getItem("token")
