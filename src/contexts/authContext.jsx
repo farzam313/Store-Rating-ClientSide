@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -9,6 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     () => !!localStorage.getItem("token")
   );
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    setIsLoggedIn(false);
+  };
 
   const login = async (email, password) => {
     try {
@@ -39,10 +43,4 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
-
-export const logout = () => {
-  localStorage.removeItem("token");
-  setToken(null);
-  setIsLoggedIn(false);
 };

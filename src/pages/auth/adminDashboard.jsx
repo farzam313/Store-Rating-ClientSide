@@ -1,16 +1,14 @@
+import AdminSideBar from "../../layout/sideBar/adminSideBar";
+
 const AdminDashboard = () => {
   return (
-    <div>
-      <div className="flex-col flex-center text-2xl font-sans">
-        <p>wiew stores</p>
-        <p>add stores</p>
-      </div>
+    <div className="flex flex-row flex-center gap-10 min-h-screen w-full border-2 border-green-500">
+      <AdminSideBar />
       <div>
         <p>Manage Stores</p>
         <p> Manage users</p>
-        <p> Manage admins </p>
+        <p> Manage Moderators </p>
         <p> Manage Reviews </p>
-        <p> </p>
       </div>
     </div>
   );
