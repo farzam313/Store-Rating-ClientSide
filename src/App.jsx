@@ -8,6 +8,7 @@ import UserDashboard from "./pages/user/userDashboard";
 import ProtectedRoute from "./routes/protectedRoutes";
 import AdminDashboard from "./pages/auth/adminDashboard";
 import Footer from "./layout/Footer";
+import AuthGuard from "./routes/authGuard";
 
 function App() {
   return (
@@ -21,9 +22,12 @@ function App() {
           <Route path="/user-dashboard" element={<UserDashboard />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Route>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+
+        <Route element={<AuthGuard />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
