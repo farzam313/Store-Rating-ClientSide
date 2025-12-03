@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/common/Button";
 import {
   FaHome,
@@ -13,6 +13,12 @@ import { useAuth } from "../../contexts/authContext.jsx";
 
 const AdminSideBar = () => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
   const sideBarItems = [
     { name: "Home", path: "/", icon: <FaHome /> },
     { name: "User", path: "/user", icon: <FaUser /> },
@@ -37,9 +43,13 @@ const AdminSideBar = () => {
         ))}
       </div>
       <div className="border border-t-yellow-500 border-r-green-600 flex flex-center w-full">
-        <Button className="my-4 " variant="danger" onClick={logout}>
+        <Button
+          onClick={handleLogout}
+          className="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white rounded py-2"
+        >
+          <FaSignOutAlt />
           Logout
-        </Button>
+        </Button>{" "}
       </div>
     </div>
   );
