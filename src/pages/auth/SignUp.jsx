@@ -3,6 +3,7 @@ import Button from "../../components/common/Button";
 import Label from "../../components/common/Label";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [name, setName] = useState("");
@@ -10,6 +11,7 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const handleSignUp = async () => {
     if (!name || !email || !password || !confirmPassword) {
       toast.error("Please fill all the fields");
@@ -41,6 +43,7 @@ const SignUp = () => {
 
       if (response.ok) {
         toast.success("Registration Successful! Please login.");
+        navigate("/login");
       }
     } catch (error) {
       console.log({ error });
