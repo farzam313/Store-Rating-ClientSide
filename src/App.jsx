@@ -16,18 +16,20 @@ function App() {
       <Toaster position="top-center" />
 
       <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Route>
+
+        <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+          <Route path="/user-dashboard" element={<UserDashboard />} />
+        </Route>
+
         <Route element={<PublicRoute />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Route>
-        <Route path="/" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Home />} />
 
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>

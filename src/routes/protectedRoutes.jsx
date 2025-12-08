@@ -1,12 +1,20 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/authContext.jsx";
 
-// Protect nested routes using <Outlet /> (react-router v6 pattern)
-const ProtectedRoute = () => {
-  const { isLoggedIn } = useAuth();
+const ProtectedRoute = ({ allowedRoles }) => {
+  const { isLoggedIn, role } = useAuth();
+  const location = useLocation();
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (allowedRoles && !allowedRoles.includes(role)) {
+    if (role === "admin") {
+      return <Navigate to="/admin-dashboard" replace />;
+    } else {
+      return <Navigate to="/user-dashboard" replace />;
+    }
   }
 
   return <Outlet />;

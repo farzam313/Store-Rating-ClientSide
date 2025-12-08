@@ -4,14 +4,13 @@ import Label from "../../components/common/Label";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useAuth } from "../../contexts/authContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { isLoggedIn } = useAuth();
 
   const { login } = useAuth();
 
@@ -27,7 +26,14 @@ const Login = () => {
 
     if (result.success) {
       toast.success(result.message);
-      navigate("/user-dashboard");
+      console.log("Login successful, role:", result.role);
+      if (result.role === "admin") {
+        console.log("Redirecting to admin-dashboard");
+        navigate("/admin-dashboard");
+      } else {
+        console.log("Redirecting to user-dashboard");
+        navigate("/user-dashboard");
+      }
     } else {
       toast.error("Login failed: " + result.message);
     }
