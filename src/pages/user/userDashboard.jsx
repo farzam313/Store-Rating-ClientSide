@@ -1,9 +1,11 @@
 import UserSideBar from "../../layout/sideBar/userSideBar";
+import Header from "../../layout/header/Header";
 const UserDashboard = () => {
   return (
-    <div className="flex-center flex-row min-h-screen bg-gray-100 p-4 gap-6">
+    <div className="flex flex-col ">
+      <Header />
       <UserSideBar />
-      <div>
+      <div className="flex-center flex-col min-h-screen bg-gray-100 p-4 gap-6">
         <h1 className="text-2xl font-bold my-4">Welcome to User Dashboard</h1>
         <p> Search Store</p>
         <p> rate stores...</p>

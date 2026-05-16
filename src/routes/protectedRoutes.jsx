@@ -3,7 +3,6 @@ import { useAuth } from "../contexts/authContext.jsx";
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const { isLoggedIn, role } = useAuth();
-  const location = useLocation();
 
   if (!isLoggedIn) {
     return <Navigate to="/login" replace />;
