@@ -9,32 +9,40 @@ import ProtectedRoute from "./routes/protectedRoutes";
 import AdminDashboard from "./pages/auth/adminDashboard";
 import Footer from "./layout/Footer";
 import PublicRoute from "./routes/publicRoutes";
+import { Header } from "./layout/header/Header";
+import { AuthProvider } from "./contexts/authContext";
+import StorePanel from "./pages/store/StorePanel";
 
 function App() {
   return (
     <BrowserRouter>
-      <Toaster position="top-center" />
+      <AuthProvider>
+        <Toaster position="top-center" />
+        <Header />
 
-      <Routes>
-        <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
-          <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        </Route>
+        <Routes>
+          <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+            <Route path="/stores" element={<StorePanel />} />
+            <Route path="/admin/store-panel" element={<StorePanel />} />
+          </Route>
 
-        <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
-          <Route path="/user-dashboard" element={<UserDashboard />} />
-        </Route>
+          <Route element={<ProtectedRoute allowedRoles={["user"]} />}>
+            <Route path="/user-dashboard" element={<UserDashboard />} />
+          </Route>
 
-        <Route element={<PublicRoute />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Route>
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+          </Route>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
 
-      <Footer />
+        {/* <Footer /> */}
+      </AuthProvider>
     </BrowserRouter>
   );
 }

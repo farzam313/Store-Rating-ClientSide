@@ -28,7 +28,7 @@ const AdminSideBar = () => {
     { name: "Stores", path: "/stores", icon: <FaStore /> },
   ];
   return (
-    <div className="flex flex-col bg-blue-600 text-white  items-left  pt-4 gap-4  w-64 fixed top-0 left-0 min-h-screen justify-between">
+    <div className="flex flex-col bg-blue-600 text-white  items-left  pt-25 gap-4  w-64 fixed top-0 left-0 min-h-screen justify-between">
       <div className="flex flex-col flex-center gap-0 ">
         {sideBarItems.map((item) => (
           <div

@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem("token"));
   const [role, setRole] = useState(() => localStorage.getItem("role"));
   const [isLoggedIn, setIsLoggedIn] = useState(
-    () => !!localStorage.getItem("token")
+    () => !!localStorage.getItem("token"),
   );
 
   const logout = () => {
