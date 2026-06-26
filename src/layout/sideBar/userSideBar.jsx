@@ -26,7 +26,7 @@ const UserSideBar = ({ className }) => {
   ];
   return (
     <div
-      className={`flex flex-col h-full bg-blue-800 text-white  items-left justify-start pt-4 gap-4 w-[15%] fixed top-0 left-0 min-h-screen ${className}`}
+      className={`flex flex-col h-full bg-green-300 text-white  items-left justify-start pt-4 gap-4 w-[15%] fixed top-0 left-0 min-h-screen ${className}`}
     >
       <nav className="flex-1 flex flex-col gap-4 mt-15">
         {sideBarItems.map((item) => (

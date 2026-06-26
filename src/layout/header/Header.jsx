@@ -4,7 +4,7 @@ export const Header = () => {
   const { isLoggedIn, role, logout } = useAuth();
   return (
     <div className="fixed top-0 left-0 w-full z-50">
-      <header className="flex items-center justify-between p-4 bg-green-800 text-white ">
+      <header className="flex items-center justify-between p-4 bg-blue-400 text-white ">
         <div className="text-2xl font-bold  justify-center">
           {" "}
           <Link to="/">
@@ -13,19 +13,25 @@ export const Header = () => {
         </div>
         <nav className="flex gap-10  mr-10   ">
           {isLoggedIn && role === "admin" && (
-            <Link to="/admin-dashboard">Admin Dashboard</Link>
+            <Link to="/admin-dashboard" className="text-white font-bold">
+              Admin Dashboard
+            </Link>
           )}
           {isLoggedIn && role === "user" && (
-            <Link to="/user-dashboard">User Dashboard</Link>
+            <Link to="/user-dashboard" className="text-white font-bold">
+              User Dashboard
+            </Link>
           )}
           {isLoggedIn ? (
-            <button onClick={logout}>Logout</button>
+            <Link to="/login" className="text-white font-bold" onClick={logout}>
+              Logout
+            </Link>
           ) : (
             <>
-              <Link to="/login" className="btn">
+              <Link to="/login" className="text-white font-bold">
                 Login
               </Link>
-              <Link to="/signup" className="btn">
+              <Link to="/signup" className="text-white font-bold">
                 Register
               </Link>
             </>
