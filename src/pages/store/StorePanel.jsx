@@ -4,6 +4,7 @@ import { useAuth } from "../../contexts/authContext";
 import AdminSideBar from "../../layout/sideBar/adminSideBar";
 import Card from "../../components/common/Card";
 import ManageStore from "./ManageStore";
+import StarRating from "./StarRating";
 
 function StorePanel() {
   const { token } = useAuth();
@@ -76,18 +77,20 @@ function StorePanel() {
           {error && <p className="text-red-600">{error}</p>}
 
           {!loading && !error && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 hover:cursor-pointer">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
               {storeData.map((store) => (
-                <div
+                <Card
                   onClick={() => handleSelectStore(store)}
                   key={store.id}
-                  className="bg-white rounded-xl border border-gray-200 p-6 m-4 hover:shadow-lg transition-shadow duration-500"
+                  className="bg-white rounded-xl border border-gray-200 p-6 m-4 hover:shadow-lg hover:cursor-pointer transition-shadow duration-100"
                 >
                   <h2 className="text-lg font-semibold mb-2">{store.name}</h2>
                   <p className="text-gray-600 mb-2">{store.description}</p>
                   <p className="text-gray-600 mb-2">{store.address}</p>
-                  <p className="text-gray-600 mb-2">Rating: {store.rating}</p>
-                </div>
+                  <div className="text-gray-600 mb-2">
+                    Rating: <StarRating rating={store.rating} />
+                  </div>
+                </Card>
               ))}
             </div>
           )}

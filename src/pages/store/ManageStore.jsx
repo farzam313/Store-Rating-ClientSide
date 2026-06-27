@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import {
   LuTrash2,
@@ -10,18 +10,22 @@ import {
   LuMapPin,
   LuArrowLeft,
 } from "react-icons/lu";
+import UpdateStore from "./UpdateStore";
 
 const ManageStore = ({ store, onBack, onStoreDeleted }) => {
-  const handleDelete = async (store) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const [currentStore, setCurrentStore] = useState(store);
+
+  const handleDelete = async (storeToDelete) => {
     try {
       const confirmDelete = window.confirm(
-        `Are you sure you want to delete the store "${store.name}"?`,
+        `Are you sure you want to delete this store: "${storeToDelete.name}"?`,
       );
       if (!confirmDelete) {
         return;
       }
       const result = await fetch(
-        import.meta.env.VITE_URL + `/api/stores/${store.id}`,
+        import.meta.env.VITE_URL + `/api/stores/${storeToDelete.id}`,
         {
           method: "DELETE",
         },
@@ -29,10 +33,26 @@ const ManageStore = ({ store, onBack, onStoreDeleted }) => {
 
       onStoreDeleted();
       onBack();
+      toast.success("Store deleted successfully");
     } catch (error) {
       console.error("Error deleting store:", error);
     }
   };
+
+  if (isEditing) {
+    return (
+      <UpdateStore
+        store={currentStore}
+        onBack={() => setIsEditing(false)}
+        onStoreUpdated={(updatedStore) => {
+          setCurrentStore(updatedStore);
+          setIsEditing(false);
+          onStoreDeleted?.();
+        }}
+      />
+    );
+  }
+
   return (
     <div className="flex flex-col max-w-4xl mx-auto my-40 p-6 border border-gray-300 rounded-lg shadow-2xl">
       <div className="flex justify-between items-center mb-4 ">
@@ -42,10 +62,13 @@ const ManageStore = ({ store, onBack, onStoreDeleted }) => {
         >
           <LuArrowLeft className="inline-block mr-2" />
         </button>
-        <LuPencil className="text-blue-500 hover:text-blue-700 cursor-pointer" />
+        <LuPencil
+          className="text-blue-500 hover:text-blue-700 cursor-pointer"
+          onClick={() => setIsEditing(true)}
+        />
         <LuTrash2
           className="text-red-500 hover:text-red-700 cursor-pointer"
-          onClick={() => handleDelete(store)}
+          onClick={() => handleDelete(currentStore)}
         />
 
         <LuLock className="text-green-500 hover:text-green-700 cursor-pointer" />
@@ -54,13 +77,13 @@ const ManageStore = ({ store, onBack, onStoreDeleted }) => {
       </div>
 
       <div className="bg-white p-6 rounded-lg  border border-gray-200 ">
-        <h1 className="py-5">{store.name}</h1>
-        <p>{store.description}</p>
+        <h1 className="py-5">{currentStore.name}</h1>
+        <p>{currentStore.description}</p>
         <p className="flex items-center gap-2 py-5">
           <LuMapPin />
-          {store.address}
+          {currentStore.address}
         </p>
-        <p className="py-5">Rating: {store.rating}</p>
+        <p className="py-5">Rating: {currentStore.rating}</p>
       </div>
     </div>
   );
