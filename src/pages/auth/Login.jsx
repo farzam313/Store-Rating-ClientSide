@@ -40,6 +40,12 @@ const Login = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -51,6 +57,7 @@ const Login = () => {
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <br />
 
@@ -60,6 +67,7 @@ const Login = () => {
           type="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         <br />
 

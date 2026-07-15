@@ -96,7 +96,6 @@ function StorePanel() {
           )}
 
           <div className="flex justify-center mt-4">
-            {/* Pagination controls butons */}
             <button
               onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
               disabled={page === 1}

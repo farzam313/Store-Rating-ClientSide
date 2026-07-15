@@ -13,6 +13,7 @@ import { Header } from "./layout/header/Header";
 import { AuthProvider } from "./contexts/authContext";
 import StorePanel from "./pages/store/StorePanel";
 import ManageStore from "./pages/store/manageStore";
+import ManageUser from "./pages/user/ManageUser";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/stores" element={<StorePanel />} />
             <Route path="/admin/store-panel" element={<StorePanel />} />
             <Route path="/manage-store" element={<ManageStore />} />
+            <Route path="/admin/manage-users" element={<ManageUser />} />
           </Route>
 
           <Route element={<ProtectedRoute allowedRoles={["user"]} />}>

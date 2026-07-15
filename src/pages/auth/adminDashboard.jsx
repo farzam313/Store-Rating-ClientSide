@@ -15,7 +15,7 @@ const AdminDashboard = () => {
     {
       title: "Manage users",
       description: "Monitor and update user accounts.",
-      route: "/admin/users",
+      route: "/admin/manage-users",
     },
     {
       title: "Manage Moderators",
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
       <aside className="w-64 h-[calc(100vh-4rem)] overflow-hidden">
         <AdminSideBar />
       </aside>
-      <main className="flex-1 overflow-y-auto bg-gray-100 pt-20">
+      <main className="flex-1 overflow-y-auto bg-red-200 pt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
           {cards.map((card) => {
             const isActive = activeCard === card.title;
