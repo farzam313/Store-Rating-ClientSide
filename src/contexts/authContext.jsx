@@ -42,25 +42,12 @@ export const AuthProvider = ({ children }) => {
     clearAuth();
   }, [clearAuth]);
   useEffect(() => {
-    const checkSession = () => {
-      if (document.visibilityState === "visible") {
-        if (!token || isTokenExpired(token)) {
-          clearAuth();
-        } else {
-          setIsLoggedIn(true);
-        }
-      }
-    };
-
-    checkSession();
-
-    window.addEventListener("focus", checkSession);
-    document.addEventListener("visibilitychange", checkSession);
-
-    return () => {
-      window.removeEventListener("focus", checkSession);
-      document.removeEventListener("visibilitychange", checkSession);
-    };
+    // Check session on mount and when visibility changes
+    if (!token || isTokenExpired(token)) {
+      clearAuth();
+    } else {
+      setIsLoggedIn(true);
+    }
   }, [token, clearAuth]);
 
   const login = async (email, password) => {
